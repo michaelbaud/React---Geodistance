@@ -1,0 +1,139 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Anton|Bangers|Carter+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed&display=swap');
+
+:root {
+  --white-color: #fafafa;
+  --light-grey-color: #f7f4f4;
+  --light-green-color: #1ecc78;
+  --green-color: #0cb765;
+  --blue-color: #4f78a4;
+  --dark-grey-color: #363636;
+  --black-color: #333030;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: var(--dark-grey-color)
+  
+}
+
+body {
+  background-color: var(--light-grey-color);
+  font-size: 1rem;
+}
+
+.App {
+  margin: 0 8px;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+/* Input */
+.box {
+  background-color: var(--white-color);
+  margin: auto;
+  max-width: 300px; 
+  padding: 30px 30px 7px 30px;  
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.box input {
+  padding: 10px 0;
+  margin-bottom: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--blue-color);
+  background-color: transparent;
+  font-size: 1.2rem;
+  color: var(--blue-color);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.box form div {
+  position: relative;
+} 
+
+.box form div label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  color: var(--blue-color);
+  transition: 0.5s;
+  pointer-events: none;
+  font-size: 1.2rem;
+}
+
+.box input:focus~label {
+  top: -20px;
+  left: 0;
+  font-style: italic;
+}
+
+.box input:not(:valid)~label {
+  top: -20px;
+  left: 0;
+
+  font-style: italic;
+}
+/* End Input */
+
+/* Suggest */
+ul {
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+  margin-top: -30px;
+  list-style: none;
+  font-size: 1.05rem;
+}
+ul li {
+  padding: 10px 10px;
+  background-color: var(--blue-color);
+  border-top: 1px solid var(--white-color);
+  border-bottom: 1px solid var(--white-color);
+  cursor: pointer;
+}
+ul li:hover {
+  background-color: #275a91;
+}
+ul li div:first-child {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+ul li div {
+  color: #fff;
+}
+/* End Suggest */
+
+/* Rangebar */
+.slider {
+  margin: 20px auto 0 auto;
+  max-width: 300px;
+
+}
+.slider .rangeslider__fill {
+  background-color: var(--blue-color) !important;
+}
+.slider .rangeslider__handle:after {
+  content: none !important;
+}
+.slider .value {
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-align: center;
+}
+/* End Rangebar */
