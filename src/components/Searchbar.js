@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-const Searchbar = ({ setPosition, setZoom, setRayon }) => {
+const Searchbar = ({ setPosition, setZoom, setRayon, rayon, setCity }) => {
 
     const [input, setInput] = useState('')
     const [suggest, setSuggest] = useState([])
-    const [errorStatus, setErrorStatus] = useState(false)
 
     useEffect(() => {
         const getSuggest = async () => {
@@ -17,28 +16,27 @@ const Searchbar = ({ setPosition, setZoom, setRayon }) => {
                 } else {
                     setSuggest([])
                 }
-
             } catch (err) {
                 console.error('getSuggest error: ', err, err.stack)
-                // setErrorStatus(true)
             }
         }
         getSuggest(input)
     }, [input])
 
-    const setNewPosition = (pos) => {
+    const setNewPosition = (pos, city, cityContext) => {
         pos = [pos[1], pos[0]]
         setInput('')
         setPosition(pos)
-        setRayon(100000)
+        setRayon(rayon)
         setZoom(8)
+        setCity({ city: city, cityContext: cityContext })
     }
 
 
     const displaySuggest = () => {
         const items = suggest.map(item => {
             return (
-                <li key={item.properties.id} onClick={() => setNewPosition(item.geometry.coordinates)}>
+                <li key={item.properties.id} onClick={() => setNewPosition(item.geometry.coordinates, item.properties.name, item.properties.context)}>
                     <div>{item.properties.name}</div>
                     <div>{item.properties.context}</div>
                 </li>

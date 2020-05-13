@@ -13,7 +13,7 @@ let map = null
 let markerLayer = null
 let rayonLayer = null
 
-const Map = ({ position, zoom, rayon }) => {
+const Map = ({ position, zoom, rayon, city }) => {
 
     const renderMap = () => map = new L.map('map')
 
@@ -31,36 +31,43 @@ const Map = ({ position, zoom, rayon }) => {
 
         const addRayon = (pos) => {
             rayonLayer = L.circle(pos, { radius: rayon })
-            console.log(rayon)
             map.addLayer(rayonLayer)
         }
 
         if (firstRendering) {
             renderMap()
             setLayer()
+            map.setView(position, zoom)
             setFirstRendering(false)
             return
-        }
-        if (markerLayer !== null) {
-            if (rayonLayer !== null) {
-                map.removeLayer(rayonLayer)
-            }
-            map.removeLayer(markerLayer)
-            map.setView(position, zoom)
-            addMarker(position)
-            addRayon(position)
         } else {
-            map.setView(position, zoom)
-            addMarker(position)
+            if (markerLayer !== null) {
+                map.removeLayer(markerLayer)
+                map.removeLayer(rayonLayer)
+                map.setView(position, zoom)
+                addMarker(position)
+                addRayon(position)
+            } else {
+                map.setView(position, zoom)
+                addMarker(position)
+                addRayon(position)
+            }
+
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [position, rayon, zoom])
 
 
-
-
-    }, [position, zoom, rayon, firstRendering])
-
-
-    return <div id="map" style={style} />
+    return (
+        <div className="mapBoxContainer">
+            <div>
+                <span className="city">{city.city}</span>
+                <br />
+                <span className="context">{city.cityContext}</span>
+            </div>
+            <div id="map" style={style} />
+        </div>
+    )
 }
 
 export default Map
