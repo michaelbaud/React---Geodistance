@@ -28,7 +28,7 @@ const Searchbar = ({ setPosition, setZoom, setRayon, rayon, setCity }) => {
         setInput('')
         setPosition(pos)
         setRayon(rayon)
-        setZoom(8)
+        setZoom(7)
         setCity({ city: city, cityContext: cityContext })
     }
 
